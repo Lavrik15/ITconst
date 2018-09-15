@@ -4,7 +4,8 @@
   "description": "test for skills",
   "main": "index.js",
   "scripts": {
-    "start": "webpack --mode=production",
+    "start": "webpack-dev-server --mode development",
+    "build": "webpack --mode=production",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Lavrik",
@@ -14,9 +15,12 @@
     "@babel/preset-env": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.2",
+    "css-loader": "^1.0.0",
     "react": "^16.5.1",
     "react-dom": "^16.5.1",
+    "style-loader": "^0.23.0",
     "webpack": "^4.19.0",
-    "webpack-cli": "^3.1.0"
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.8"
   }
 }
