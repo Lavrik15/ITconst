@@ -1,32 +1,78 @@
-import React from 'react';
+import React, { Component } from 'react';
+import Admin from '../Admin/Admin'
+
 import "./App.css";
 
-export default class App extends React.Component {
-    // constructor() {
-    //     this.state = {
 
-    //     }
-    // }
+const lists = [
+    {
+        objectID: 1,
+        text: "Сидор Сидоров \n директор",
+        isRemoved: false
+    },
+    {
+        objectID: 2,
+        text: "Петр Петров \n менеджер",
+        isRemoved: false
+    },
+    {
+        objectID: 3,
+        text: "Руслан Баширов \n менеджер",
+        isRemoved: false
+    }
+]
+
+class App extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            lists
+        }
+        this.onTextAreaChange = this.onTextAreaChange.bind(this);
+        this.onRemoveBtnClick = this.onRemoveBtnClick.bind(this);
+    }
+    onTextAreaChange(content) {
+        const objectID = this.state.lists.length + 1;
+        const item = new Item(objectID, content)
+        this.setState(() => this.state.lists.push(item));
+    }
+    onRemoveBtnClick(id) {
+        const { lists } = this.state;
+        const elems = lists.map(item => {
+            if (item.objectID === id) item.isRemoved = !item.isRemoved;
+            return item;
+        });
+        this.setState({ lists: elems });
+    }
     render() {
+        const { lists } = this.state;
         return (
             <div className="content">
                 <div className="list-wrapper">
                     <ul className="list">
-                        <li>Василий Петров<br />директов</li>
-                        <li>Иван Иванович<br />бухгалтер</li>
-                        <li>Руслан Баширов<br />менджер</li>
+                        {lists.map(item => item.isRemoved ? null : <li key={item.objectID}>{item.text}</li>)}
                     </ul>
-                    <button className="btn-menu" type="button">Close menu</button>
+                    <button
+                        className="btn-menu"
+                        type="button"
+                    >
+                        Close menu
+                    </button>
                 </div>
-                <div className="admin">
-                    <div className="admin-item">
-                        <span className="admin-title">Item #1</span>
-                        <textarea className="admin-input" name="" id="" cols="30" rows="10"></textarea>
-                        <button type="button">Remove</button>
-                    </div>
-                    <button>Add item</button>
-                </div>
+                <Admin
+                    onTextAreaChange={this.onTextAreaChange}
+                    lists={lists}
+                    onRemoveBtnClick={this.onRemoveBtnClick}
+                />
             </div>
         );
     }
 }
+
+function Item(objectID, text) {
+    this.objectID = objectID;
+    this.text = text;
+    this.isRemoved = false;
+}
+
+export default App;

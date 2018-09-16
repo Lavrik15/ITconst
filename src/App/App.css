@@ -1,0 +1,47 @@
+body {
+    margin: 0px;
+}
+.btn-menu {
+    position: absolute;
+    top: 5px;
+    right: 20px;
+}
+.content {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+.list-wrapper {
+    position: relative;
+    flex: 0 1 100%;
+}
+.list {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+}
+.list li {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid gray;
+    white-space: pre-line;
+}
+
+
+/* admin */
+.admin {
+    flex: 0 0 250px;
+    padding: 10px;
+    background-color: gray;
+}
+.admin-item {
+    margin-bottom: 20px;
+}
+.admin-title {
+    display: block;
+    margin-bottom: 10px;
+}
+.admin-input {
+    width: 100%;
+    margin-bottom: 10px;
+}

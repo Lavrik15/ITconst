@@ -6,6 +6,7 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         filename: './js/bundle.js'
     },
+    devtool: 'eval-source-map',
     devServer: {
         contentBase: path.join(__dirname, 'dist'),
         compress: true,
