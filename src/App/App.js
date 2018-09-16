@@ -27,10 +27,12 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            lists
+            lists,
+            isAdminShow: true
         }
         this.onTextAreaChange = this.onTextAreaChange.bind(this);
         this.onRemoveBtnClick = this.onRemoveBtnClick.bind(this);
+        this.onShowAdminBtnClick = this.onShowAdminBtnClick.bind(this);
     }
     onTextAreaChange(content) {
         const objectID = this.state.lists.length + 1;
@@ -45,17 +47,26 @@ class App extends Component {
         });
         this.setState({ lists: elems });
     }
+    onShowAdminBtnClick() {
+        const { isAdminShow } = this.state;
+        this.setState({
+            isAdminShow: !isAdminShow 
+        });
+    }
     render() {
-        const { lists } = this.state;
+        const { lists, isAdminShow } = this.state;
         return (
             <div className="content">
                 <List
                     lists={lists}
+                    onShowAdminBtnClick={this.onShowAdminBtnClick}
+                    isAdminShow={isAdminShow}
                 />
                 <Admin
                     onTextAreaChange={this.onTextAreaChange}
                     lists={lists}
                     onRemoveBtnClick={this.onRemoveBtnClick}
+                    isAdminShow={isAdminShow}
                 />
             </div>
         );

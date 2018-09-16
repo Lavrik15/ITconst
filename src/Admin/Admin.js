@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import AdminItem  from './Item/Item';
+import AdminItem from './Item/Item';
 
 class Admin extends Component {
     constructor(props) {
@@ -19,39 +19,42 @@ class Admin extends Component {
     }
 
     render() {
-        const { lists, onRemoveBtnClick } = this.props;
+        const { lists, onRemoveBtnClick, isAdminShow } = this.props;
         return (
-            <div className="admin">
-                {lists.map((item) =>
-                    <div key={item.objectID} className="admin-item">
-                        <span className="admin-title">Item #{item.objectID}</span>
-                        <form onSubmit={this.onSubmitItem}>
-                            <textarea
-                                className="admin-input"
-                                cols="30"
-                                rows="10"
-                                value={item.text}
-                                onChange={this.handleChange}
-                            >
-                            </textarea>
-                            <button
-                                type="button"
-                                onClick={() => onRemoveBtnClick(item.objectID)}
-                            >
-                                {
-                                    (item.isRemoved) ?
-                                        "Restore" :
-                                        "Remove"
-                                }
-                            </button>
-                        </form>
-                    </div>
-                )}
-                <AdminItem
-                    onTextAreaChange={this.props.onTextAreaChange}
-                />
+            <div>
+                {
+                    (isAdminShow) ?
+                        <div className="admin">
+                            {lists.map((item) =>
+                                <div key={item.objectID} className="admin-item">
+                                    <span className="admin-title">Item #{item.objectID}</span>
+                                    <form onSubmit={this.onSubmitItem}>
+                                        <textarea
+                                            className="admin-input"
+                                            cols="30"
+                                            rows="10"
+                                            value={item.text}
+                                            onChange={this.handleChange}
+                                        >
+                                        </textarea>
+                                        <button
+                                            type="button"
+                                            onClick={() => onRemoveBtnClick(item.objectID)}
+                                        >
+                                            {(item.isRemoved) ? "Restore" : "Remove"}
+                                        </button>
+                                    </form>
+                                </div>
+                            )}
+                            <AdminItem
+                                onTextAreaChange={this.props.onTextAreaChange}
+                            />
+                        </div> :
+                        null
+                }
             </div>
         );
+
     }
 }
 
