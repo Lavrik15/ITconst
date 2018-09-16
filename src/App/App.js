@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Admin from '../Admin/Admin'
+import Admin from '../Admin/Admin';
+import List from '../List/List';
 
 import "./App.css";
 
@@ -48,17 +49,9 @@ class App extends Component {
         const { lists } = this.state;
         return (
             <div className="content">
-                <div className="list-wrapper">
-                    <ul className="list">
-                        {lists.map(item => item.isRemoved ? null : <li key={item.objectID}>{item.text}</li>)}
-                    </ul>
-                    <button
-                        className="btn-menu"
-                        type="button"
-                    >
-                        Close menu
-                    </button>
-                </div>
+                <List
+                    lists={lists}
+                />
                 <Admin
                     onTextAreaChange={this.onTextAreaChange}
                     lists={lists}
